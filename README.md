@@ -1,5 +1,4 @@
 <h1 align="center">
-  <br>
   <a href="https://play.google.com/store/apps/details?id=com.vacui.ploppem" target="_blank">
     <img src="https://raw.githubusercontent.com/Vacui/Ploppem/main/Title.png" alt="Ploppem" width="200"></img>
   </a>
@@ -32,8 +31,7 @@ To speed up the development and further polish the player experience I used this
 * [PlayerPrefs Editor](https://assetstore.unity.com/packages/tools/utilities/playerprefs-editor-167903) by BG Tools
 * [Custom Hierarchy](https://www.febucci.com/2020/10/custom-hierarchy-for-unity/) by Febucci
 
----
-
-> Twitter [@matteograizzaro](https://twitter.com/matteograizzaro) &nbsp;&middot;&nbsp;
-> LinkedIn [Matteo Graizzaro](https://www.linkedin.com/in/matteo-graizzaro/) &nbsp;&middot;&nbsp;
-> GitHub [@vacui](https://github.com/vacui)
+## Contacts
+Twitter [@matteograizzaro](https://twitter.com/matteograizzaro) &nbsp;&middot;&nbsp;
+LinkedIn [Matteo Graizzaro](https://www.linkedin.com/in/matteo-graizzaro/) &nbsp;&middot;&nbsp;
+GitHub [@vacui](https://github.com/vacui)
