@@ -1,13 +1,21 @@
 _The code in this repository is read only, **nobody** is allowed to redistribuite or use it, with 
 or without modification._
-# Ploppem
-<p>
+<h1 align="center">Ploppem</h1>
+<p align="center">
   <img src="https://img.shields.io/badge/-unity-000000?style=for-the-badge&logo=unity&logoColor=white" alt="Unity">
   <img src="https://img.shields.io/badge/-visual studio-5C2D91?style=for-the-badge&logo=visual studio&logoColor=white" alt="Visual Studio">
   <img src="https://img.shields.io/badge/-notion-000000?style=for-the-badge&logo=notion&logoColor=white" alt="Notion">
 </p>
+<p align="center">
+  <b>Code repository of Ploppem, a minimal endless-runner I developed to improve my skills.</b>
+</p>
 
-**Code repository of Ploppem, a minimal endless-runner I developed to improve my skills.**
+<p align="center">
+  <img src="https://github.com/Vacui/Ploppem/blob/main/_README%20files/Gameplay.gif" height="300">
+  <img src="https://github.com/Vacui/Ploppem/blob/main/_README%20files/Screen%201.jpg" height="300">
+  <img src="https://github.com/Vacui/Ploppem/blob/main/_README%20files/Screen%202.jpg" height="300">
+  <img src="https://github.com/Vacui/Ploppem/blob/main/_README%20files/Screen%203.jpg" height="300">
+</p>
 
 ### Game Features
 * One touch input endless runner with increasing difficulty
@@ -16,7 +24,7 @@ or without modification._
 * Customizable bacgkround, enemis and UI palette
 * Multiple languages
 
-<p align="">
+<p align="center">
   <a href="https://play.google.com/store/apps/details?id=com.vacui.ploppem" target="_blank">
     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogos-download.com%2Fwp-content%2Fuploads%2F2016%2F02%2FGoogle_Play_logo_black.png&f=1&nofb=1" alt="Google Play" height="50">
   </a>
@@ -25,11 +33,11 @@ or without modification._
   </a>
 </p>
 
+## Techincal Description
+...
+
 ## Credits
-To speed up the development and further polish the player experience I used this plugins:
-* TextMesh Pro
-* [PlayerPrefs Editor](https://assetstore.unity.com/packages/tools/utilities/playerprefs-editor-167903) by BG Tools
-* [Custom Hierarchy](https://www.febucci.com/2020/10/custom-hierarchy-for-unity/) by Febucci
+To speed up the development and further polish the player experience I used free assets, mainly icons, from sites like [Flaticon](http://www.flaticon.com/) and [OpenGameArt](https://opengameart.org/), and the plugins TextMesh Pro, [PlayerPrefs Editor](https://assetstore.unity.com/packages/tools/utilities/playerprefs-editor-167903), and [Custom Hierarchy](https://www.febucci.com/2020/10/custom-hierarchy-for-unity/).
 
 ## Contacts
 <a href="mailto:graizzaromatteo@gmail.com">
