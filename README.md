@@ -31,7 +31,7 @@ or without modification._
   <a href="https://play.google.com/store/apps/details?id=com.vacui.ploppem" target="_blank">
     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogos-download.com%2Fwp-content%2Fuploads%2F2016%2F02%2FGoogle_Play_logo_black.png&f=1&nofb=1" alt="Google Play" height="50">
   </a>
-  <a href="https://play.google.com/store/apps/details?id=com.vacui.ploppem" target="_blank">
+  <a href="https://matteo-graizzaro.itch.io/ploppem" target="_blank">
     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.majorariatto.com%2Fres%2Fitchio_badge.png&f=1&nofb=1" alt="Itch.io" height="50">
   </a>
 </p>
