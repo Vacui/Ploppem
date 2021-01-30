@@ -1,3 +1,5 @@
+_The code in this repository is read only, **nobody** is allowed to redistribuite or use it, with 
+or without modification._
 # Ploppem
 
 **Code repository of Ploppem, a minimal endless-runner I developed to improve my skills.**
