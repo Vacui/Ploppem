@@ -16,13 +16,16 @@ or without modification._
   <img src="https://github.com/Vacui/Ploppem/blob/main/_README%20files/Screen%202.jpg" height="300">
   <img src="https://github.com/Vacui/Ploppem/blob/main/_README%20files/Screen%203.jpg" height="300">
 </p>
-
-### Game Features
-* One touch input endless runner with increasing difficulty
-* Game statistics
-* Minimal graphics
-* Customizable bacgkround, enemis and UI palette
-* Multiple languages
+<h3 align="center">Game Features</h3>
+<p align ="center">  
+  <i>
+    One touch input endless runner with increasing difficulty<br>
+    Customizable background, enemies and UI<br>
+    Multiple languages<br>
+    Minimal graphics<br>
+    Player stats
+  </i>
+</p>
 
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=com.vacui.ploppem" target="_blank">
@@ -33,7 +36,7 @@ or without modification._
   </a>
 </p>
 
-## Techincal Description
+## Technical Description
 ...
 
 ## Credits
