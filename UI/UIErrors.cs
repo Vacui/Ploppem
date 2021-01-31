@@ -1,6 +1,9 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Class for game UI element showing player errors num.
+/// </summary>
 public class UIErrors : MonoBehaviour {
 
     [Header("Components")]
@@ -8,8 +11,7 @@ public class UIErrors : MonoBehaviour {
 
     public void UpdateUI(int num) {
         if (_textNum != null) {
-            _textNum.text = num.ToString();
-            _textNum.text += "/" + GameManager.MAXERRORS;
+            _textNum.text = $"{num.ToString()}/{GameManager.MAXERRORS}";
         }
     }
 
