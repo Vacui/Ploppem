@@ -1,12 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Class responsible of manage vital game systems, like spawning and death of enemies, player score, etc...
+/// </summary>
 public class GameManager : MonoBehaviour {
 
     public static GameManager Instance = null;
 
-    public static float START_GAME_TIME = 0.5f;
+    private static float GAME_START_TIME = 0.5f;
 
     public static UnityEvent Paused = null;
     public static UnityEvent Resumed = null;
@@ -72,28 +75,28 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public static float GameSessionStartTime = 0.0f;
+    public static float GameSessionStartTime { get; private set; }
 
 
     [Header("Spawn")]
-    [SerializeField] [ReadOnly] int _monstersSpawned = 0;
-    [SerializeField] [ReadOnly] int _monstersCurrent = 0;
-    [SerializeField] [ReadOnly] int _monstersKilled = 0;
+    [SerializeField] [ReadOnly] int _enemiesSpawned = 0;
+    [SerializeField] [ReadOnly] int _enemiesCurrent = 0;
+    [SerializeField] [ReadOnly] int _enemiesKilled = 0;
     [SerializeField] LayerMask _spawnLayerMask = 0;
     [SerializeField] [Range(0.5f, 2.0f)] float _spawnCheckRadius = 1.0f;
-    private Transform _monstersParent = null;
+    private Transform _enemiesParent = null;
 
     [Header("Difficulty")]
     [SerializeField] [Min(0)] float _startingSpawnTime = 0.0f;
     [SerializeField] AnimationCurve _spawnTime = null;
     [SerializeField] [ReadOnly] float _lastSpawnTime = 0.0f;
-    float _currentSpawnTime { get { return _spawnTime.Evaluate(_score); } }
+    private float _currentSpawnTime { get { return _spawnTime.Evaluate(_score); } }
     [SerializeField] AnimationCurve _moveSpeed = null;
-    float _currentMoveSpeed { get { return _moveSpeed.Evaluate(_score); } }
+    private float _currentMoveSpeed { get { return _moveSpeed.Evaluate(_score); } }
     [SerializeField] AnimationCurve _deathTime = null;
-    float _currentDeathTime { get { return _deathTime.Evaluate(_score); } }
-    [SerializeField] AnimationCurve _monstersLimit = null;
-    float _currentMonsterLimit { get { return _monstersLimit.Evaluate(_score); } }
+    private float _currentDeathTime { get { return _deathTime.Evaluate(_score); } }
+    [SerializeField] AnimationCurve _enemiesQuantityLimit = null;
+    private float _currentEnemiesQuantityLimit { get { return _enemiesQuantityLimit.Evaluate(_score); } }
     [SerializeField] GameObject _enemyPrefab = null;
 
     [Header("Events")]
@@ -139,21 +142,21 @@ public class GameManager : MonoBehaviour {
         _lastSpawnTime = 0;
         UsePauseEvents = true;
         StopAllCoroutines();
-        _monstersCurrent = 0;
-        _monstersSpawned = 0;
-        _monstersKilled = 0;
+        _enemiesCurrent = 0;
+        _enemiesSpawned = 0;
+        _enemiesKilled = 0;
         _isGameOver = false;
         GameSessionStartTime = 0.0f;
     }
 
     private void KillEnemies(bool recreate) {
-        if (_monstersParent != null) {
-            Destroy(_monstersParent.gameObject);
+        if (_enemiesParent != null) {
+            Destroy(_enemiesParent.gameObject);
         }
         if (recreate) {
-            _monstersParent = new GameObject("Monsters Parent").transform;
-            _monstersParent.SetParent(transform);
-            _monstersParent.position = Vector3.zero;
+            _enemiesParent = new GameObject("Enemies Parent").transform;
+            _enemiesParent.SetParent(transform);
+            _enemiesParent.position = Vector3.zero;
         }
     }
 
@@ -162,7 +165,7 @@ public class GameManager : MonoBehaviour {
         GameResume();
         Debug.Log("Game State A (Ready)");
         OnGameReady?.Invoke();
-        TimerManager.Create(gameObject, START_GAME_TIME, () => { GameStart(); });
+        TimerManager.Create(gameObject, GAME_START_TIME, () => { GameStart(); });
     }
 
     public void GameStart() {
@@ -174,15 +177,15 @@ public class GameManager : MonoBehaviour {
         // Reset variables
         GameInitialize();
 
-        // Recreate Monsters Parent
+        // Recreate Enemies Parent
         KillEnemies(true);
 
         OnGameStart?.Invoke();
 
         // Fill the screen with entities
-        for (int i = 0; i < _currentMonsterLimit; i++) {
+        for (int i = 0; i < _currentEnemiesQuantityLimit; i++) {
             ProgramNewSpawn(_startingSpawnTime);
-            _monstersSpawned++;
+            _enemiesSpawned++;
         }
     }
 
@@ -203,8 +206,8 @@ public class GameManager : MonoBehaviour {
 
     private void ProgramNewSpawn() { ProgramNewSpawn(_currentSpawnTime); }
     private void ProgramNewSpawn(float spawnTime = 0.0f) {
-        if(_monstersCurrent > 0) {
-            _monstersCurrent--;
+        if(_enemiesCurrent > 0) {
+            _enemiesCurrent--;
         }
 
         StartCoroutine(SpawnCooldown(spawnTime));
@@ -229,14 +232,14 @@ public class GameManager : MonoBehaviour {
 
     public void Spawn() {
         bool success = true;
-        if (!IsPaused && _monstersCurrent < _currentMonsterLimit) {
+        if (!IsPaused && _enemiesCurrent < _currentEnemiesQuantityLimit) {
             try {
-                Enemy newEnemy = Instantiate(_enemyPrefab, RandomMonsterPosition(), Quaternion.identity, _monstersParent).GetComponent<Enemy>();
+                Enemy newEnemy = Instantiate(_enemyPrefab, RandomEnemyPosition(), Quaternion.identity, _enemiesParent).GetComponent<Enemy>();
                 if(newEnemy != null) {
                     newEnemy.SetUp(_currentDeathTime, _currentMoveSpeed);
                 }
-                _monstersSpawned++;
-                _monstersCurrent++;
+                _enemiesSpawned++;
+                _enemiesCurrent++;
             } catch (System.Exception e) {
                 Debug.LogWarning($"Error spawning enemy: {e.Message}", gameObject);
                 success = false;
@@ -245,31 +248,31 @@ public class GameManager : MonoBehaviour {
             success = false;
         }
 
-        if (!success && _monstersCurrent < _currentMonsterLimit && !_isGameOver) {
+        if (!success && _enemiesCurrent < _currentEnemiesQuantityLimit && !_isGameOver) {
             ProgramNewSpawn();
         }
     }
 
-    private Vector2 RandomMonsterPosition() {
+    private Vector2 RandomEnemyPosition() {
         int maxChecks = 10;
         int checks = 0;
-        Vector2 monsterPos = Vector2.zero;
+        Vector2 enemyPos = Vector2.zero;
         bool posIsCorrect = false;
         while(!posIsCorrect && checks < maxChecks) {
-            monsterPos = new Vector2(UnityEngine.Random.Range(-GameCamera.HalfWorldWidth, GameCamera.HalfWorldWidth), UnityEngine.Random.Range(-GameCamera.HalfWorlHeight + GameCamera.LIMIT_BOTTOM, GameCamera.HalfWorlHeight - GameCamera.LIMIT_TOP));
-            posIsCorrect = Physics2D.OverlapCircle(monsterPos, _spawnCheckRadius, _spawnLayerMask) == null;
+            enemyPos = new Vector2(Random.Range(-GameCamera.HalfWorldWidth, GameCamera.HalfWorldWidth), Random.Range(-GameCamera.HalfWorlHeight + GameCamera.LIMIT_BOTTOM, GameCamera.HalfWorlHeight - GameCamera.LIMIT_TOP));
+            posIsCorrect = Physics2D.OverlapCircle(enemyPos, _spawnCheckRadius, _spawnLayerMask) == null;
             checks++;
         }
         if (checks >= maxChecks) {
             throw new System.Exception("No suitable positions");
         } else {
-            return monsterPos;
+            return enemyPos;
         }
     }
 
     private void Scored() {
         Score += 1;
-        _monstersKilled++;
+        _enemiesKilled++;
     }
 
     public void Error() {
