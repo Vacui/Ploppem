@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public enum PaletteColor {
     NULL = 0,
@@ -7,6 +7,9 @@ public enum PaletteColor {
     GRAY = 3
 }
 
+/// <summary>
+/// Class responsible to manage the change of UI palette.
+/// </summary>
 public class PaletteManager : MonoBehaviour {
 
     static Color32 BLACK = new Color32(4, 4, 4, 255);
