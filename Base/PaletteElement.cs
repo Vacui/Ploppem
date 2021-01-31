@@ -1,4 +1,4 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,13 +49,6 @@ public class PaletteElement : MonoBehaviour {
             foreach(MyGradient myGradient in myGradients) {
                 if (myGradient != null) {
                     myGradient._gradient = Utility.GenerateGradient(color, color, _alpha, _alpha);
-                }
-            }
-
-            MyColor[] myColors = GetComponents<MyColor>();
-            foreach(MyColor myColor in myColors) {
-                if (myColor != null) {
-                    myColor._color = color;
                 }
             }
         }
