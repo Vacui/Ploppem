@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Master class for UI panels, it manages the show and hide status.
+/// </summary>
 public class UIElement : MonoBehaviour {
 
     [SerializeField] GameObject _content = null;
