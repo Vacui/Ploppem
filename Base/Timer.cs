@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Static class used to create a Timer.
+/// </summary>
 public static class TimerManager {
 
     public static void Create(GameObject obj, float duration, System.Action onComplete) {
@@ -11,6 +14,9 @@ public static class TimerManager {
 
 }
 
+/// <summary>
+/// Timer in seconds.
+/// </summary>
 public class Timer : MonoBehaviour {
 
     [SerializeField] [Min(0)] float _duration = 0;
@@ -22,7 +28,7 @@ public class Timer : MonoBehaviour {
     static float _destroyTime = 1.0f;
 
     private void Awake() {
-        if (Utility.IsPositive(_duration)) {
+        if (_duration > 0) {
             SetUp(_duration);
         }
     }
