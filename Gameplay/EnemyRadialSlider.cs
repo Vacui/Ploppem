@@ -1,10 +1,19 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class responsible of manage the enemy visual radial slider, that shows its death countdown.
+/// </summary>
 public class EnemyRadialSlider : MonoBehaviour {
 
     [Header("Radial Parameters")]
     [SerializeField] [Range(0.0f, 1.0f)] float _currentPercentage = 0.0f;
+    private float CurrentPercentage {
+        get { return _currentPercentage; }
+        set {
+            _currentPercentage = Mathf.Clamp(value, 0.0f, 1.0f);
+        }
+    }
 
     [Header("Extra")]
     [SerializeField] MyGradient _color = null;
@@ -27,19 +36,15 @@ public class EnemyRadialSlider : MonoBehaviour {
         if (_currentPercentage <= 0) {
             SetPercentage(0);
         }
-        SetGradient(EnemyGradientManager.GetCurrentGradient());
+        SetGradient(EnemyGradientManager.Instance.CurrentGradient);
     }
 
-    float rotation = 0.0f;
     public void SetPercentage(float value) {
 
-        _currentPercentage = value;
+        CurrentPercentage = value;
 
-        rotation = Mathf.Clamp((180 * _currentPercentage) * 2, 0, 180);
-        _leftHalfMask.transform.transform.localRotation = Quaternion.Euler(0, 0, rotation);
-
-        rotation = Mathf.Clamp(((180 * (_currentPercentage - 0.5f)) * 2) - 180, -180, 0);
-        _rightHalfMask.transform.transform.localRotation = Quaternion.Euler(0, 0, rotation);
+        _leftHalfMask.transform.transform.localRotation = Quaternion.Euler(0, 0, Mathf.Clamp((180 * _currentPercentage) * 2, 0, 180));
+        _rightHalfMask.transform.transform.localRotation = Quaternion.Euler(0, 0, Mathf.Clamp(((180 * (_currentPercentage - 0.5f)) * 2) - 180, -180, 0));
 
         UpdateColor();
     }
@@ -64,7 +69,7 @@ public class EnemyRadialSlider : MonoBehaviour {
         if (_rightHalf != null) { _rightHalf.color = color; }
 
         if (_myTrailRenderer != null) {
-            _myTrailRenderer.colorGradient = Utility.GenerateGradient(color, color, 1, 1);
+            _myTrailRenderer.colorGradient = GradientUtils.GenerateGradient(color, color, 1, 1);
         }
     }
 
