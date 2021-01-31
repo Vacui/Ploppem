@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -175,7 +175,7 @@ public class Enemy : MonoBehaviour {
         while (true) {
             yield return new WaitForSeconds(_raycastCheckRate);
             if (!GameManager.IsPaused) {
-                if (!DirectionIsSafe(CurrentDirection) || !DirectionIsSafe(CurrentDirection.Next()) || !DirectionIsSafe(CurrentDirection.Prev())) {
+                if (!DirectionIsSafe(CurrentDirection) || !DirectionIsSafe(CurrentDirection.NextDirection()) || !DirectionIsSafe(CurrentDirection.PrevDirection())) {
                     NewDirection();
                 }
             }
