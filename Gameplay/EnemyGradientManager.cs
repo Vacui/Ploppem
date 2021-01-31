@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class for enemy palettes.
+/// </summary>
 [System.Serializable]
 public class EnemyGradient {
     public Color color0 = Color.white;
     public Color color1 = Color.white;
-    public Gradient gradient {
+    public Gradient Gradient {
         get {
             Gradient result = new Gradient();
             result.colorKeys = new GradientColorKey[2] {
@@ -19,13 +22,11 @@ public class EnemyGradient {
             return result;
         }
     }
-
-    public EnemyGradient(Color newColor0, Color newColor1) {
-        color0 = newColor0;
-        color1 = newColor1;
-    }
 }
 
+/// <summary>
+/// Class responsible to manage the change and store the enemy palette.
+/// </summary>
 public class EnemyGradientManager : MonoBehaviour {
 
     public static EnemyGradientManager Instance = null;
@@ -33,6 +34,30 @@ public class EnemyGradientManager : MonoBehaviour {
     [SerializeField] int _forcedGradient = -1;
     [SerializeField] List<EnemyGradient> _gradients = new List<EnemyGradient>();
     [SerializeField] [ReadOnly] int _currentIndex = 0;
+    private int CurrentIndex {
+        get { return _currentIndex; }
+        set {
+            if(_gradients == null) {
+                Debug.LogWarning($"The EnemyGradientManager {name} has no gradients", gameObject);
+                _currentIndex = 0;
+            } else {
+                if (value >= _gradients.Count) {
+                    value = 0;
+                } else {
+                    if (value < 0) {
+                        value = _gradients.Count - 1;
+                    }
+                }
+                _currentIndex = Mathf.Clamp(value, 0, _gradients.Count - 1);
+            }
+        }
+    }
+
+    public Gradient CurrentGradient {
+        get {
+            return _gradients[_currentIndex].Gradient;
+        }
+    }
     [SerializeField] UIGradient _UIGradient = null;
     [SerializeField] Image _color0Img = null;
     [SerializeField] TextMeshProUGUI _color0Text = null;
@@ -45,7 +70,6 @@ public class EnemyGradientManager : MonoBehaviour {
         }
         Instance = this;
 
-        DataManager.EnemyGradient = 0;
         UpdateGradient(DataManager.EnemyGradient);
     }
 
@@ -64,18 +88,11 @@ public class EnemyGradientManager : MonoBehaviour {
         if (_forcedGradient >= 0) {
             newIndex = _forcedGradient;
         }
-        if (newIndex >= _gradients.Count) {
-            newIndex = 0;
-        } else {
-            if (newIndex < 0) {
-                newIndex = _gradients.Count - 1;
-            }
-        }
-        _currentIndex = Mathf.Clamp(newIndex, 0, _gradients.Count - 1);
+        _currentIndex = newIndex;
 
         EnemyGradient newGradient = _gradients[_currentIndex];
         if (_UIGradient != null) {
-            _UIGradient.SetGradient(newGradient.gradient);
+            _UIGradient.Gradient = newGradient.Gradient;
         }
         if (_color0Img != null) {
             _color0Img.color = newGradient.color0;
@@ -92,14 +109,6 @@ public class EnemyGradientManager : MonoBehaviour {
         }
 
         DataManager.EnemyGradient = _currentIndex;
-    }
-
-    public static Gradient GetCurrentGradient() {
-        Gradient result = new Gradient();
-        if(Instance != null) {
-            result = Instance._gradients[Instance._currentIndex].gradient;
-        }
-        return result;
     }
 
 }
