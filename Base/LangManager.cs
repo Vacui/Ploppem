@@ -13,6 +13,9 @@ public enum LangElement {
     VERSION
 }
 
+/// <summary>
+/// Class responisble of managing the change of UI language
+/// </summary>
 public class LangManager : MonoBehaviour{
 
     /// <summary>
@@ -33,9 +36,11 @@ public class LangManager : MonoBehaviour{
         DataManager.Language = lang;
         LoadLanguage();
     }
+
     /// <summary>
-    /// Load language files from resources
+    /// Load language files from resources.
     /// </summary>
+    /// Code source unknown.
     private static void LoadLanguage() {
         if (Fields == null) {
             Fields = new Dictionary<string, string>();
