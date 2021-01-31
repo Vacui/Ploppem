@@ -2,10 +2,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class responsible of applying the palette to an UI Element.
+/// </summary>
 [DisallowMultipleComponent]
 public class PaletteElement : MonoBehaviour {
 
-    [SerializeField] PaletteColor _color = 0;
+    [SerializeField] PaletteColor _paletteColor = 0;
     [SerializeField] [Range(0, 255)] byte _alpha = 255;
     [SerializeField] bool _isForced = false;
 
@@ -20,9 +23,9 @@ public class PaletteElement : MonoBehaviour {
     }
 
     public void SetUp() {
-        if (_color != PaletteColor.NULL && _color != 0) {
+        if (_paletteColor != PaletteColor.NULL && _paletteColor != 0) {
 
-            Color32 color = PaletteManager.GetColor(_color, _isForced);
+            Color32 color = PaletteManager.GetColor(_paletteColor, _isForced);
             color = new Color32(color.r, color.g, color.b, _alpha);
 
             Image myImg = GetComponent<Image>();
