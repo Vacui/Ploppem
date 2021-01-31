@@ -1,9 +1,26 @@
-﻿using UnityEngine;
+/*
+ * Customized version of UIGradient class made by azixMcAze.
+ * Original: https://github.com/azixMcAze/Unity-UIGradient
+ * 
+ * I adapted its structure to support my Gradient class instead of 2 colors.
+ * */
+using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class used to manage the UI gradient element in the customization menu for enemies palette.
+/// </summary>
 public class UIGradient : BaseMeshEffect
 {
     [SerializeField] Gradient _gradient = new Gradient();
+    public Gradient Gradient {
+        get { return _gradient; }
+        set {
+            _gradient = value;
+            GetComponent<Image>().enabled = false;
+            GetComponent<Image>().enabled = true;
+        }
+    }
     [SerializeField] [Range(-180f, 180f)] float m_angle = 0f;
     [SerializeField] bool m_ignoreRatio = true;
     VertexHelper _myVh = null;
@@ -29,13 +46,4 @@ public class UIGradient : BaseMeshEffect
         }
     }
 
-    public void SetGradient(Gradient newGradient) {
-        _gradient = newGradient;
-        GetComponent<Image>().enabled = false;
-        GetComponent<Image>().enabled = true;
-    }
-
-    public Gradient GetGradient() {
-        return _gradient;
-    }
 }
