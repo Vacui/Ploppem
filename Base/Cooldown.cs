@@ -1,20 +1,27 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Cooldown in seconds.
+/// </summary>
 public class Cooldown : MonoBehaviour {
 
     [Header("Cooldown parameters")]
     [SerializeField] [Range(0.0f, 5.0f)]
-    [Tooltip("Cooldown duration in seconds.")]
     private float _duration = 0.0f;
-    public float Duration {
-        get {
-            return _duration;
-        }
-    }
+    
     [SerializeField] [ReadOnly]
     private float _currentTime = 0.0f;
-    public float Percentage {
+    private float CurrentTime {
+        get {
+            return _currentTime;
+        }
+        set {
+            _currentTime = Mathf.Clamp(value, 0.0f, _duration);
+        }
+    }
+
+    private float Percentage {
         get {
             float result = 1;
             if (Utility.IsPositive(_duration)) {
@@ -30,7 +37,7 @@ public class Cooldown : MonoBehaviour {
     [SerializeField] UnityEvent Stopped = null;
 
     private void OnValidate() {
-        if (!Application.isPlaying) { 
+        if (!Application.isPlaying) {
             SetCurrentTime(_duration);
         }
     }
@@ -48,15 +55,16 @@ public class Cooldown : MonoBehaviour {
     }
 
     public void CooldownStart() {
-        if (Utility.IsPositive(_duration)) {
+        if (_duration > 0) {
             SetCurrentTime(0);
             _isStopped = false;
         }
     }
 
     public virtual void SetCurrentTime(float value) {
-        _currentTime = Mathf.Clamp(value, 0.0f, _duration);
+        _currentTime = value;
         ChangedPercentage?.Invoke(Percentage);
+
         if (Application.isPlaying == false) {
             EnemyRadialSlider rs = GetComponent<EnemyRadialSlider>();
             if(rs != null) {
