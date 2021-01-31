@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Flags]
@@ -14,7 +15,7 @@ public enum Direction {
     UpLeft = 128
 }
 
-static class DirectionMethods {
+static class DirectionUtils {
 
     public static Vector3 GetVector3(this Direction direction) {
         return GetVector2(direction);
@@ -56,10 +57,29 @@ static class DirectionMethods {
     public static Direction NewDirection(this Direction direction, List<Direction> possibleDirections) {
         Direction result = Direction.NULL;
         if (possibleDirections.Count > 0) {
-            possibleDirections.ShuffleList();
+            possibleDirections.ShuffleDirections();
             result = possibleDirections[0];
         }
         return result;
+    }
+
+    public static List<Direction> ShuffleDirections(this List<Direction> list) {
+        System.Random gen = new System.Random();
+        return list.OrderBy(item => gen.Next()).ToList();
+
+    }
+
+    // The 2 following methods were just customized by me, not programmed. I don't remember the source.
+    public static Direction NextDirection(this Direction src) {
+        Direction[] Arr = (Direction[])System.Enum.GetValues(src.GetType());
+        int j = System.Array.IndexOf<Direction>(Arr, src) + 1;
+        return (Arr.Length == j) ? Arr[0] : Arr[j];
+    }
+
+    public static Direction PrevDirection(this Direction src) {
+        Direction[] Arr = (Direction[])System.Enum.GetValues(src.GetType());
+        int j = System.Array.IndexOf<Direction>(Arr, src) - 1;
+        return (Arr.Length == j) ? Arr[j] : Arr[0];
     }
 
 }
