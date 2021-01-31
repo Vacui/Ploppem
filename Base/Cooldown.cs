@@ -24,7 +24,7 @@ public class Cooldown : MonoBehaviour {
     private float Percentage {
         get {
             float result = 1;
-            if (Utility.IsPositive(_duration)) {
+            if (_duration > 0) {
                 result = _currentTime / _duration;
             }
             return Mathf.Clamp(result, 0.0f, 1.0f);
