@@ -8,7 +8,7 @@ public enum PaletteColor {
 }
 
 /// <summary>
-/// Class responsible to manage the change of UI palette.
+/// Class responsible to manage the change and store the UI palette.
 /// </summary>
 public class PaletteManager : MonoBehaviour {
 
