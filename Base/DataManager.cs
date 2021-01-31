@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 
+/// <summary>
+/// Static class responsible to permanently save data in the android device using PlayerPrefs.
+/// </summary>
 public static class DataManager {
 
     public static float Tick = 0.01f;
@@ -76,19 +79,19 @@ public static class DataManager {
         }
     }
 
-    private const string MISS_PLAYERPREFS_KEY = "miss";
-    public static int Miss {
+    private const string MISSES_PLAYERPREFS_KEY = "miss";
+    public static int Misses {
         get {
-            return PlayerPrefs.GetInt(MISS_PLAYERPREFS_KEY);
+            return PlayerPrefs.GetInt(MISSES_PLAYERPREFS_KEY);
         }
         set {
-            PlayerPrefs.SetInt(MISS_PLAYERPREFS_KEY, value < 0 ? 0 : value);
+            PlayerPrefs.SetInt(MISSES_PLAYERPREFS_KEY, value < 0 ? 0 : value);
         }
     }
 
     public static int TotalTouches {
         get {
-            return Miss + Hits;
+            return Misses + Hits;
         }
     }
 
