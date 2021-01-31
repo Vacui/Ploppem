@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class responsible to update the enemy visuals to show its remaining allowed movement directions.
+/// </summary>
 public class EnemyDirectionGraphic : MonoBehaviour
 {
     [SerializeField] Transform _currentDirection = null;
