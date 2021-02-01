@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Static class responsible to permanently save data in the android device using PlayerPrefs.
+/// Static class responsible for permanently save data in the android device using PlayerPrefs.
 /// </summary>
 public static class DataManager {
 
