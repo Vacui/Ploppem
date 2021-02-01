@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 
+/// <summary>
+/// Class responsible of storing important information for enemy spawning.
+/// </summary>
 [RequireComponent(typeof(Camera))]
 public class GameCamera : MonoBehaviour {
 
@@ -7,34 +10,13 @@ public class GameCamera : MonoBehaviour {
     public static float LIMIT_TOP = 1.8f;
     public static float LIMIT_BOTTOM = 1.8f;
 
-    public static float Height {
-        get;
-        private set;
-    }
-    public static float Width {
-        get;
-        private set;
-    }
-    public static Vector2 ScreenBounds {
-        get;
-        private set;
-    }
-    public static float WorldHeight {
-        get;
-        private set;
-    }
-    public static float HalfWorlHeight {
-        get;
-        private set;
-    }
-    public static float WorldWidth {
-        get;
-        private set;
-    }
-    public static float HalfWorldWidth {
-        get;
-        private set;
-    }
+    public static float Height { get; private set; }
+    public static float Width { get; private set; }
+    public static Vector2 ScreenBounds { get; private set; }
+    public static float WorldHeight { get; private set; }
+    public static float HalfWorlHeight { get; private set; }
+    public static float WorldWidth { get; private set; }
+    public static float HalfWorldWidth { get; private set; }
 
     private void Awake() {
         _myCamera = GetComponent<Camera>();
