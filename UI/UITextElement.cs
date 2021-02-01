@@ -1,6 +1,9 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Class utilized to manage language change in UI Texts.
+/// </summary>
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class UITextElement : MonoBehaviour {
 
