@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+using UnityEngine;
 
+/// <summary>
+/// Class responsible of keep track of player stats.
+/// </summary>
 public class GameStats : MonoBehaviour {
 
     private float _startTime = 0.0f;
 
     public void IncreaseMiss() {
-        DataManager.Miss++;
+        DataManager.Misses++;
     }
 
     public void IncreaseHits() {
@@ -28,7 +31,7 @@ public class GameStats : MonoBehaviour {
     }
 
     public void ResetGameStats() {
-        DataManager.Miss = 0;
+        DataManager.Misses = 0;
         DataManager.Hits = 0;
         DataManager.Playtime = 0;
     }
