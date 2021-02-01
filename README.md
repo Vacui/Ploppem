@@ -52,6 +52,3 @@ To speed up the development and further polish the player experience I used free
 <a href="https://www.linkedin.com/in/matteo-graizzaro/">
   <img src="https://img.shields.io/badge/-linkedin-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
 </a>
-<a href="https://github.com/Vacui">
-  <img src="https://img.shields.io/badge/-github-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
-</a>
