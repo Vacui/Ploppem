@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Static class with util to create a Gradient.
+/// </summary>
 public static class GradientUtils {
 
     public static Gradient GenerateGradient(Color color1, Color color2, float alpha1 = 1, float alpha2 = 1) {
