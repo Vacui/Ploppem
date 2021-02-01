@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 
+/// <summary>
+/// Create a border of colliders to stop enemies from leaving the screen.
+/// </summary>
 [RequireComponent(typeof(Camera))]
 public class Limiter : MonoBehaviour {
 
