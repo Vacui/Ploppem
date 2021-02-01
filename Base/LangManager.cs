@@ -14,7 +14,7 @@ public enum LangElement {
 }
 
 /// <summary>
-/// Class responisble of managing the change of UI language
+/// Class responsible for managing the change of UI language
 /// </summary>
 public class LangManager : MonoBehaviour{
 
