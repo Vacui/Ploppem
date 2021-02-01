@@ -15,6 +15,9 @@ public enum Direction {
     UpLeft = 128
 }
 
+/// <summary>
+/// Direction utils such as conversions in different Vector types, angles, etc...
+/// </summary>
 static class DirectionUtils {
 
     public static Vector3 GetVector3(this Direction direction) {
