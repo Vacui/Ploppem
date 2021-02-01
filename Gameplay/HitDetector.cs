@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Class responsible of detecting hits (touches) on enemies.
+/// </summary>
 public class HitDetector : MonoBehaviour {
 
     [SerializeField] [Range(0.0f, 1.0f)] float _touchRadius = 0.0f;
@@ -24,21 +27,22 @@ public class HitDetector : MonoBehaviour {
     }
 
     private void NewInput(Vector2 position) {
-        bool monsterHitted = false;
-        Enemy monster = null;
+        bool enemyHitted = false;
+        Enemy enemy = null;
         Collider2D hit = Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(position), _touchRadius, _hitMask);
         if (hit != null) {
-            monster = hit.gameObject.GetComponent<Enemy>();
-            if (monster != null && !monster.IsDead) {
-                monster.Hit();
-                monsterHitted = true;
+            enemy = hit.gameObject.GetComponent<Enemy>();
+            if (enemy != null && !enemy.IsDead) {
+                enemy.Hit();
+                enemyHitted = true;
             }
         }
 
-        if (monsterHitted) {
+        if (enemyHitted) {
             EnemyHitted?.Invoke();
         } else {
             EnemyMissed?.Invoke();
         }
     }
+
 }
