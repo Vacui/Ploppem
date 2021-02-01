@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
-/// Class responsible of manage vital game systems, like spawning and death of enemies, player score, etc...
+/// Class responsible for manage vital game systems, like spawning, death of enemies, player score, etc...
 /// </summary>
 public class GameManager : MonoBehaviour {
 
