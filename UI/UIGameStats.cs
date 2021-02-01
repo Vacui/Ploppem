@@ -1,6 +1,9 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Class responsible of showing the Game stats in their UI Panel.
+/// </summary>
 public class UIGameStats : MonoBehaviour {
 
     [SerializeField] TextMeshProUGUI _textPlaytime = null;
@@ -22,7 +25,7 @@ public class UIGameStats : MonoBehaviour {
             _textTotalTouches.text = $"{DataManager.TotalTouches}";
         }
         if (_textMiss != null) {
-            _textMiss.text = $"{DataManager.Miss}";
+            _textMiss.text = $"{DataManager.Misses}";
         }
         if (_textHits != null) {
             _textHits.text = $"{DataManager.Hits}";
