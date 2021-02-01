@@ -1,6 +1,9 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Class responsible of manage HighScore, Score and Timer UI.
+/// </summary>
 public class UIGame : MonoBehaviour {
 
     [SerializeField] TextMeshProUGUI _textScore = null;
