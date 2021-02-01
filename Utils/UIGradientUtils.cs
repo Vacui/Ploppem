@@ -1,9 +1,12 @@
-using UnityEngine;
-
 /*
  * Class made by azixMcAze.
  * Original: https://github.com/azixMcAze/Unity-UIGradient
  * */
+using UnityEngine;
+
+/// <summary>
+/// Utilities for Gradient class.
+/// </summary>
 public static class UIGradientUtils {
 
     public struct Matrix2x3 {
