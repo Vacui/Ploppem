@@ -1,7 +1,10 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Class responsible of updating the version text in the Main Menu UI.
+/// </summary>
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class UIGameVersion : MonoBehaviour {
 
