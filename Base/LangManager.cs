@@ -16,7 +16,7 @@ public enum LangElement {
 /// <summary>
 /// Class responsible for managing the change of UI language
 /// </summary>
-public class LangManager : MonoBehaviour{
+public class LangManager : MonoBehaviour {
 
     /// <summary>
     /// Text Fields
@@ -56,15 +56,17 @@ public class LangManager : MonoBehaviour{
         string[] lines = textAsset.text.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
         string key, value;
         for (int i = 0; i < lines.Length; i++) {
-            if (lines[i].IndexOf("=") >= 0 && !lines[i].StartsWith("#")) {
-                key = lines[i].Substring(0, lines[i].IndexOf("="));
+            int indexSep = lines[i].IndexOf("=");
+            if (indexSep >= 0 && !lines[i].StartsWith("#")) {
+                key = lines[i].Substring(0, indexSep);
                 value = lines[i].Substring(
                     lines[i].IndexOf("=") + 1,
-                    lines[i].Length - lines[i].IndexOf("=") - 1)
+                    lines[i].Length - indexSep - 1)
                     .Replace("\\n", Environment.NewLine);
                 Fields.Add(key, value);
             }
         }
+        Fields.Add("VERSION_NUM", Application.version);
 
         UpdateTexts();
     }
@@ -76,21 +78,17 @@ public class LangManager : MonoBehaviour{
     }
 
     public static string GetText(string key) {
-        if(Fields == null) {
+        if (Fields == null) {
             LoadLanguage();
             return GetText(key);
         } else {
             if (Fields.ContainsKey(key)) {
                 return Fields[key];
             } else {
-                if (key == "VERSION_NUM") {
-                    return Application.version;
-                } else {
-                    return "";
-                }
+                return "";
             }
         }
-        
+
     }
 
 }
