@@ -23,10 +23,10 @@ public class PaletteManager : MonoBehaviour {
 
             //the value is valid
             if (value == PaletteColor.BLACK) {
-                return isForced ? BLACK : (IS_BLACK ? BLACK : WHITE);
+                return isForced || IS_BLACK ? BLACK : WHITE;
             } else {
                 if (value == PaletteColor.WHITE) {
-                    return isForced ? WHITE : (IS_BLACK ? WHITE : BLACK);
+                    return isForced || IS_BLACK ? WHITE : BLACK;
                 } else {
                     return GRAY;
                 }
