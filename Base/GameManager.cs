@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour {
         _enemiesSpawned = 0;
         _enemiesKilled = 0;
         _isGameOver = false;
-        GameSessionStartTime = 0.0f;
+        GameSessionStartTime = Time.time;
     }
 
     private void KillEnemies(bool recreate) {
@@ -259,7 +259,7 @@ public class GameManager : MonoBehaviour {
         Vector2 enemyPos = Vector2.zero;
         bool posIsCorrect = false;
         while(!posIsCorrect && checks < maxChecks) {
-            enemyPos = new Vector2(Random.Range(-GameCamera.HalfWorldWidth, GameCamera.HalfWorldWidth), Random.Range(-GameCamera.HalfWorlHeight + GameCamera.LIMIT_BOTTOM, GameCamera.HalfWorlHeight - GameCamera.LIMIT_TOP));
+            enemyPos = GameCamera.GetRandomPos();
             posIsCorrect = Physics2D.OverlapCircle(enemyPos, _spawnCheckRadius, _spawnLayerMask) == null;
             checks++;
         }
