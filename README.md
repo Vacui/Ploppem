@@ -3,7 +3,7 @@ or without modification._
 <h1 align="center">Ploppem</h1>
 <p align="center">
   <img src="https://img.shields.io/badge/-unity-000000?style=for-the-badge&logo=unity&logoColor=white" alt="Unity">
-  <img src="https://img.shields.io/badge/-visual studio-5C2D91?style=for-the-badge&logo=visual studio&logoColor=white" alt="Visual Studio">
+  <img src="https://img.shields.io/badge/-visual studio-5C2D91?style=for-the-badge&logo=visual%20studio&logoColor=white" alt="Visual Studio">
   <img src="https://img.shields.io/badge/-notion-000000?style=for-the-badge&logo=notion&logoColor=white" alt="Notion">
 </p>
 <p align="center">
@@ -35,9 +35,6 @@ or without modification._
     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.majorariatto.com%2Fres%2Fitchio_badge.png&f=1&nofb=1" alt="Itch.io" height="50">
   </a>
 </p>
-
-## Technical Description
-...
 
 ## Credits
 To speed up the development and further polish the player experience I used free assets, mainly icons, from sites like [Flaticon](http://www.flaticon.com/) and [OpenGameArt](https://opengameart.org/), and the plugins TextMesh Pro, [PlayerPrefs Editor](https://assetstore.unity.com/packages/tools/utilities/playerprefs-editor-167903), and [Custom Hierarchy](https://www.febucci.com/2020/10/custom-hierarchy-for-unity/).
