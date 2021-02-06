@@ -18,6 +18,10 @@ public class GameCamera : MonoBehaviour {
     public static float WorldWidth { get; private set; }
     public static float HalfWorldWidth { get; private set; }
 
+    public static Vector2 GetRandomPos() {
+        return new Vector2(Random.Range(-GameCamera.HalfWorldWidth, GameCamera.HalfWorldWidth), Random.Range(-GameCamera.HalfWorlHeight + GameCamera.LIMIT_BOTTOM, GameCamera.HalfWorlHeight - GameCamera.LIMIT_TOP)); ;
+    }
+
     private void Awake() {
         _myCamera = GetComponent<Camera>();
         Height = Screen.height;
